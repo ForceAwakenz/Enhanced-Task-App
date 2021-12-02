@@ -39,3 +39,7 @@
 .spinner-container mat-spinner {
     margin: 130px auto 0 auto;
 }
+
+.lesson-table {
+    margin: 20px auto;
+}
