@@ -31,15 +31,24 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { TaskListComponent } from './task-list/task-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TaskInputComponent } from './task-input/task-input.component';
 
 
 @NgModule({
   declarations: [
     MainComponent,
     DockTestComponent,
-    DockTestSortComponent
+    DockTestSortComponent,
+    ToolbarComponent,
+    TaskListComponent,
+    TaskInputComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     CdkTreeModule,
     MatAutocompleteModule,

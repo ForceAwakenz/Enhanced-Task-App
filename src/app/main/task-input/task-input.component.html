@@ -1,0 +1,30 @@
+<button 
+    (click)="isAddTaskClicked = true"
+    id="addTaskButton" 
+    mat-fab 
+    color="accent" 
+    *ngIf="!isAddTaskClicked">
+    <mat-icon>note_add</mat-icon>
+</button>
+
+<ng-container *ngIf="isAddTaskClicked">
+    
+    <form [formGroup]="addTaskForm" id="addTaskForm" class="example-form" (ngSubmit)="onSubmit()">
+        
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Task</mat-label>
+            <input #taskInput matInput placeholder="Enter the task here" formControlName="taskTextInput">
+        </mat-form-field>
+
+
+        
+        
+        <button mat-raised-button color="accent" type="submit">
+            <mat-icon >
+                add
+            </mat-icon>
+        </button>
+        
+    </form>
+
+</ng-container>
