@@ -21,7 +21,7 @@ export class TaskInputComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.taskDataService.addTask(
       {
         text: this.addTaskForm.controls['taskTextInput'].value, 

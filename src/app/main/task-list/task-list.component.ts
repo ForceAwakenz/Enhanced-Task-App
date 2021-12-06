@@ -23,7 +23,7 @@ export class TaskListComponent implements OnInit {
     });
   }
 
-  sortData(sort: Sort) {
+  sortData(sort: Sort): void {
 
     const data = this.taskList.slice();
     
@@ -48,19 +48,17 @@ export class TaskListComponent implements OnInit {
 
   }
 
-  onTaskClick(row: any) {
+  onTaskClick(row: ITask): void {
     row.isDone = !row.isDone;
   }
 
-  onIsDoneChanged(event: any) {
+  onIsDoneChanged(event: Event): void {
     event.stopPropagation();
   }
 
-  onRemove(currentTask: ITask, event: Event) {
+  onRemove(currentTask: ITask, event: Event): void {
     event.stopPropagation();
-    this.taskDataService.deleteTask(currentTask.id);
-    console.log(currentTask.id);
-    
+    this.taskDataService.deleteTask(currentTask.id);    
   }
 
 }
