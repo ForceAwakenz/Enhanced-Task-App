@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable} from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, switchMap} from 'rxjs';
 import { ITask } from '../models/Task';
 
 @Injectable({
@@ -14,8 +14,10 @@ export class TaskDataService {
     }    
   }
 
-  getTaskList(): Observable<ITask[]> {
-    return this.taskList$.asObservable();
+  getTaskList(filterPhraze: string): Observable<ITask[]> {
+    return this.taskList$.asObservable().pipe(
+      map((taskList: ITask[]) => taskList.filter(task => task.text.includes(filterPhraze)))
+    );
   }
 
   deleteTask(currentTaskId: number): void {

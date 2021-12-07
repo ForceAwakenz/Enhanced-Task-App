@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { debounceTime, filter, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,9 +12,16 @@ export class ToolbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.onFilterInputChange()
+      .subscribe();
   }
 
-  
+  onFilterInputChange(): Observable<string> {
+    return this.filterInput.valueChanges.pipe(
+      filter(userInput => userInput.length > 2),
+      debounceTime(500)
+    )
+  }
 
   onFilterTextChange(event: any) {
     console.log(event);

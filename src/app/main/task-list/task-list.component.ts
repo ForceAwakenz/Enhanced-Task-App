@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { ITask } from 'src/app/shared/models/Task';
+import { FilterInputService } from 'src/app/shared/services/filter-input.service';
 import { TaskDataService } from 'src/app/shared/services/task-data.service';
 
 @Component({
@@ -13,11 +14,12 @@ export class TaskListComponent implements OnInit {
   taskList!: ITask[];
   sortedTaskList!: ITask[];
 
-  constructor(private taskDataService: TaskDataService) {
-  }
+  constructor(
+    private taskDataService: TaskDataService, 
+    private filterInputService: FilterInputService) {}
   
   ngOnInit(): void {
-    this.taskDataService.getTaskList().subscribe(taskList => {
+    this.taskDataService.getTaskList(this.filterInputService.getSearchPhraze()).subscribe(taskList => {
       this.taskList = taskList;
       this.sortedTaskList = this.taskList.slice();
     });
