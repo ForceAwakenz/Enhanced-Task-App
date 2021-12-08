@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainComponent } from './main/main.component';
-import { DockTestComponent } from './dock-test/dock-test.component';
-import { DockTestSortComponent } from './dock-test-sort/dock-test-sort.component';
 
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -41,8 +39,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
   declarations: [
     MainComponent,
-    DockTestComponent,
-    DockTestSortComponent,
     ToolbarComponent,
     TaskListComponent,
     TaskInputComponent
