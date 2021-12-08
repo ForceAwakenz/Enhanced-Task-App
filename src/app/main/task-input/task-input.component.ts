@@ -8,8 +8,6 @@ import { TaskDataService } from 'src/app/shared/services/task-data.service';
   styleUrls: ['./task-input.component.scss']
 })
 export class TaskInputComponent implements OnInit {
-  @ViewChild('taskInput') taskInput!: ElementRef;
-  @ViewChild('datePicker') datePicker!: ElementRef;
   isAddTaskClicked: boolean = false;
   addTaskForm!: FormGroup;
 
@@ -23,7 +21,7 @@ export class TaskInputComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.taskInput.nativeElement.value.trim() === '') {
+    if (this.addTaskForm.controls['taskTextInput'].value.trim() === '') {
       return;
     }
     this.taskDataService.addTask(
@@ -34,8 +32,12 @@ export class TaskInputComponent implements OnInit {
         id: +(new Date())}
       );
 
-    this.taskInput.nativeElement.value = '';
-    this.datePicker.nativeElement.value = '';
+    this.addTaskForm.controls['taskTextInput'].reset();
+    this.addTaskForm.controls['taskDatePicker'].reset();
+  }
+
+  onAddTaskBtnClicked() {
+    this.isAddTaskClicked = true;
   }
 
 }
