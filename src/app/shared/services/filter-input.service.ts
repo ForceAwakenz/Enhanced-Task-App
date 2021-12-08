@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterInputService {
-  private searchPhraze!: string;
+  private _searchPhraze$!: Observable<string>;
   constructor() { }
 
-  getSearchPhraze(): string {
-    return this.searchPhraze;
+  get searchPhraze$() {
+    return this._searchPhraze$;
   }
 
-  setSearchPhraze(newSearchPhraze: string): void {
-    this.searchPhraze = newSearchPhraze;
+  set searchPhraze$(newSearchPhraze: Observable<string>) {
+    this._searchPhraze$ = newSearchPhraze;
   }
 
 }

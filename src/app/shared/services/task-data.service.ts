@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, map, Observable, switchMap} from 'rxjs';
+import { BehaviorSubject, filter, first, map, Observable, startWith, switchMap, tap} from 'rxjs';
 import { ITask } from '../models/Task';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskDataService {
-  taskList$ = new BehaviorSubject<ITask[]>([]);
+  private taskList$ = new BehaviorSubject<ITask[]>([]);
 
   constructor() { 
     if (localStorage.getItem('taskList')) {
       this.taskList$.next(JSON.parse(localStorage.getItem('taskList') || ''));
-    }    
+    }
   }
 
   getTaskList(filterPhraze: string): Observable<ITask[]> {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, filter, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, first, Observable, skip, switchMap, tap } from 'rxjs';
+import { FilterInputService } from 'src/app/shared/services/filter-input.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,22 +10,19 @@ import { debounceTime, filter, Observable } from 'rxjs';
 })
 export class ToolbarComponent implements OnInit {
   filterInput = new FormControl;
-  constructor() { }
+
+  constructor(private filterInputService: FilterInputService) { }
 
   ngOnInit(): void {
-    this.onFilterInputChange()
-      .subscribe();
+    this.filterInputChange$().pipe(searchUpdate$ => this.filterInputService.searchPhraze$ = searchUpdate$);
   }
 
-  onFilterInputChange(): Observable<string> {
+  private filterInputChange$(): Observable<string> {
     return this.filterInput.valueChanges.pipe(
-      filter(userInput => userInput.length > 2),
-      debounceTime(500)
+      debounceTime(500),
+      distinctUntilChanged(),
     )
   }
 
-  onFilterTextChange(event: any) {
-    console.log(event);
-  }
 
 }
