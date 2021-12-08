@@ -36,7 +36,6 @@ export class TaskInputComponent implements OnInit {
 
     this.taskInput.nativeElement.value = '';
     this.datePicker.nativeElement.value = '';
-    console.dir(this.datePicker.nativeElement);
   }
 
 }
