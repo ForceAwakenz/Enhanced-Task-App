@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { startWith, switchMap } from 'rxjs';
+import { startWith, Subscription, switchMap } from 'rxjs';
 import { ITask } from 'src/app/shared/models/Task';
 import { FilterInputService } from 'src/app/shared/services/filter-input.service';
 import { TaskDataService } from 'src/app/shared/services/task-data.service';
@@ -10,17 +10,18 @@ import { TaskDataService } from 'src/app/shared/services/task-data.service';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, OnDestroy {
   displayedColumns = ['text', 'date', 'isDone', 'id'];
   taskList!: ITask[];
   sortedTaskList!: ITask[];
+  searchPhrazeSubscription$!: Subscription;
 
   constructor(
     private taskDataService: TaskDataService, 
     private filterInputService: FilterInputService) {}
   
   ngOnInit(): void {
-    this.filterInputService.searchPhraze$.pipe(
+    this.searchPhrazeSubscription$ = this.filterInputService.searchPhraze$.pipe(
       startWith(''),
       switchMap(searchUpdate$ => this.taskDataService.getTaskList(searchUpdate$))
     )
@@ -28,6 +29,10 @@ export class TaskListComponent implements OnInit {
       this.taskList = taskList;
       this.sortedTaskList = this.taskList.slice();
     });
+  }
+
+  ngOnDestroy() {
+    this.searchPhrazeSubscription$.unsubscribe();
   }
 
   sortData(sort: Sort): void {

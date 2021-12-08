@@ -8,10 +8,10 @@ import { TaskDataService } from 'src/app/shared/services/task-data.service';
   styleUrls: ['./task-input.component.scss']
 })
 export class TaskInputComponent implements OnInit {
-  isAddTaskClicked: boolean = false;
-  addTaskForm!: FormGroup;
   @ViewChild('taskInput') taskInput!: ElementRef;
   @ViewChild('datePicker') datePicker!: ElementRef;
+  isAddTaskClicked: boolean = false;
+  addTaskForm!: FormGroup;
 
   constructor(private taskDataService: TaskDataService) {}
 
