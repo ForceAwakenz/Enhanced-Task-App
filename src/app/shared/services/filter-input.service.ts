@@ -8,7 +8,7 @@ export class FilterInputService {
   private _searchPhraze$!: Observable<string>;
   constructor() { }
 
-  get searchPhraze$() {
+  get searchPhraze$(): Observable<string> {
     return this._searchPhraze$;
   }
 

@@ -29,7 +29,7 @@ export class TaskInputComponent implements OnInit {
     this.taskDataService.addTask(
       {
         text: this.addTaskForm.controls['taskTextInput'].value, 
-        date: this.addTaskForm.controls['taskDatePicker']?.value.toDateString() || new Date().toDateString(),
+        date: this.addTaskForm.controls['taskDatePicker'].value?.toDateString() || new Date().toDateString(),
         isDone: false, 
         id: +(new Date())}
       );
