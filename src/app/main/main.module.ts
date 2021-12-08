@@ -13,7 +13,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -35,6 +35,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskInputComponent } from './task-input/task-input.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -76,8 +77,9 @@ import { TaskInputComponent } from './task-input/task-input.component';
     MatButtonToggleModule,
     MatTreeModule,
     OverlayModule,
-    PortalModule
-
+    PortalModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class MainModule { }

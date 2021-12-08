@@ -11,27 +11,32 @@ export class TaskInputComponent implements OnInit {
   isAddTaskClicked: boolean = false;
   addTaskForm!: FormGroup;
   @ViewChild('taskInput') taskInput!: ElementRef;
+  @ViewChild('datePicker') datePicker!: ElementRef;
 
   constructor(private taskDataService: TaskDataService) {}
 
   ngOnInit(): void {
     this.addTaskForm = new FormGroup({
       taskTextInput: new FormControl(null),
-
+      taskDatePicker: new FormControl(null)
     });
   }
 
   onSubmit(): void {
+    if (this.taskInput.nativeElement.value.trim() === '') {
+      return;
+    }
     this.taskDataService.addTask(
       {
         text: this.addTaskForm.controls['taskTextInput'].value, 
-        date: new Date().toDateString(), 
+        date: this.addTaskForm.controls['taskDatePicker']?.value.toDateString() || new Date().toDateString(),
         isDone: false, 
         id: +(new Date())}
       );
 
     this.taskInput.nativeElement.value = '';
-      
+    this.datePicker.nativeElement.value = '';
+    console.dir(this.datePicker.nativeElement);
   }
 
 }

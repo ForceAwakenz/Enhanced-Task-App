@@ -9,12 +9,12 @@ export class TaskDataService {
   private taskList$ = new BehaviorSubject<ITask[]>([]);
 
   constructor() { 
-      this.taskList$.next(JSON.parse(localStorage.getItem('taskList') || ''));
+      this.taskList$.next(JSON.parse(localStorage.getItem('taskList') || '[]'));
   }
 
   getTaskList(filterPhraze: string): Observable<ITask[]> {
     return this.taskList$.asObservable().pipe(
-      map((taskList: ITask[]) => taskList.filter(task => task.text.includes(filterPhraze)))
+      map((taskList: ITask[]) => taskList.filter(task => task.text?.includes(filterPhraze)))
     );
   }
 
