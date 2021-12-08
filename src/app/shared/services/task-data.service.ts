@@ -9,9 +9,7 @@ export class TaskDataService {
   private taskList$ = new BehaviorSubject<ITask[]>([]);
 
   constructor() { 
-    if (localStorage.getItem('taskList')) {
       this.taskList$.next(JSON.parse(localStorage.getItem('taskList') || ''));
-    }
   }
 
   getTaskList(filterPhraze: string): Observable<ITask[]> {
