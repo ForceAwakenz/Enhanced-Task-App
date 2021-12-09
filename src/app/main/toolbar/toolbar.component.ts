@@ -14,7 +14,9 @@ export class ToolbarComponent implements OnInit {
   constructor(private filterInputService: FilterInputService) { }
 
   ngOnInit(): void {
-    this.filterInputChange$().pipe(searchUpdate$ => this.filterInputService.searchPhraze$ = searchUpdate$);
+    this.filterInputChange$().subscribe(searchUpdate => {
+      this.filterInputService.searchPhraze$.next(searchUpdate);
+    });
   }
 
   private filterInputChange$(): Observable<string> {

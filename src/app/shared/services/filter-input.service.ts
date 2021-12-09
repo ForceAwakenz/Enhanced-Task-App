@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterInputService {
-  private _searchPhraze$!: Observable<string>;
+  searchPhraze$ = new BehaviorSubject<string>('');
   constructor() { }
 
-  get searchPhraze$(): Observable<string> {
-    return this._searchPhraze$;
-  }
+  // get searchPhraze$(): BehaviorSubject<string> {
+  //   return this._searchPhraze$;
+  // }
 
-  set searchPhraze$(newSearchPhraze: Observable<string>) {
-    this._searchPhraze$ = newSearchPhraze;
-  }
+  // set searchPhraze$(newSearchPhraze: BehaviorSubject<string>) {
+  //   this._searchPhraze$ = newSearchPhraze;
+  // }
 
 }
