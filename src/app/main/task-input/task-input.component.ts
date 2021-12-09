@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { ITask } from 'src/app/shared/models/Task';
 import { FormatTaskService } from 'src/app/shared/services/format-task.service';
 import { TaskDataService } from '../../shared/services/task-data.service';
 
@@ -25,13 +26,13 @@ export class TaskInputComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.formatTaskService.checkedTask = 
-      {
+    const formatedTask: ITask = this.formatTaskService.formatTask({
         text: this.addTaskForm.controls['taskTextInput'].value, 
-        date: this.addTaskForm.controls['taskDatePicker'].value?.toDateString()
-      };
+        date: this.addTaskForm.controls['taskDatePicker'].value
+      }
+    );
     
-    this.taskDataService.addTask(this.formatTaskService.checkedTask);
+    this.taskDataService.addTask(formatedTask);
     this.taskForm.resetForm();
   }
 
