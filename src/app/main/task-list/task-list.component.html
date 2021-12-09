@@ -37,7 +37,7 @@
         mat-row 
         *matRowDef="let row; columns: displayedColumns;" 
         (click)="onTaskClick(row)" 
-        [ngClass]="{'doneTask': row.isDone ? 'line-through' : '' }">
+        [class.doneTask]="row.isDone">
     </tr>
 
 </table>

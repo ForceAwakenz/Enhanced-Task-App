@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {FormControl, FormGroup } from '@angular/forms';
+import {FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormatTaskService } from 'src/app/shared/services/format-task.service';
 import { TaskDataService } from '../../shared/services/task-data.service';
 
 @Component({
@@ -11,26 +12,25 @@ export class TaskInputComponent implements OnInit {
   isAddTaskClicked: boolean = false;
   addTaskForm!: FormGroup;
 
-  constructor(private taskDataService: TaskDataService) {}
+  constructor(
+    private taskDataService: TaskDataService,
+    private formatTaskService: FormatTaskService) {}
 
   ngOnInit(): void {
     this.addTaskForm = new FormGroup({
-      taskTextInput: new FormControl(null),
+      taskTextInput: new FormControl(null, Validators.required),
       taskDatePicker: new FormControl(null)
     });
   }
 
   onSubmit(): void {
-    if (this.addTaskForm.controls['taskTextInput'].value.trim() === '') {
-      return;
-    }
-    this.taskDataService.addTask(
+    this.formatTaskService.checkedTask = 
       {
         text: this.addTaskForm.controls['taskTextInput'].value, 
-        date: this.addTaskForm.controls['taskDatePicker'].value?.toDateString() || new Date().toDateString(),
-        isDone: false, 
-        id: +(new Date())}
-      );
+        date: this.addTaskForm.controls['taskDatePicker'].value?.toDateString()
+      };
+    
+    this.taskDataService.addTask(this.formatTaskService.checkedTask);
 
     this.addTaskForm.controls['taskTextInput'].reset();
     this.addTaskForm.controls['taskDatePicker'].reset();
