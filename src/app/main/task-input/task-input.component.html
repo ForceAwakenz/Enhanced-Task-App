@@ -9,7 +9,7 @@
 
 <ng-container *ngIf="isAddTaskClicked">
     
-    <form [formGroup]="addTaskForm" id="addTaskForm" class="example-form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="addTaskForm" id="addTaskForm" class="example-form" (ngSubmit)="onSubmit()" #taskForm="ngForm">
         
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Task</mat-label>

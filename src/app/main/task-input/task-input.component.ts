@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { FormatTaskService } from 'src/app/shared/services/format-task.service';
 import { TaskDataService } from '../../shared/services/task-data.service';
 
@@ -11,6 +11,7 @@ import { TaskDataService } from '../../shared/services/task-data.service';
 export class TaskInputComponent implements OnInit {
   isAddTaskClicked: boolean = false;
   addTaskForm!: FormGroup;
+  @ViewChild('taskForm') taskForm!: FormGroupDirective;
 
   constructor(
     private taskDataService: TaskDataService,
@@ -31,9 +32,7 @@ export class TaskInputComponent implements OnInit {
       };
     
     this.taskDataService.addTask(this.formatTaskService.checkedTask);
-
-    this.addTaskForm.controls['taskTextInput'].reset();
-    this.addTaskForm.controls['taskDatePicker'].reset();
+    this.taskForm.resetForm();
   }
 
   onAddTaskBtnClicked() {
