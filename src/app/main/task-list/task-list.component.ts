@@ -4,6 +4,7 @@ import { startWith, Subscription, switchMap } from 'rxjs';
 import { ITask } from '../../../app/shared/models/Task';
 import { FilterInputService } from '../../../app/shared/services/filter-input.service';
 import { TaskDataService } from '../../../app/shared/services/task-data.service';
+import { compare } from 'src/app/shared/utils/compare';
 
 @Component({
   selector: 'app-task-list',
@@ -62,11 +63,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'text':
-          return this.compare(a.text, b.text, isAsc);
+          return compare(a.text, b.text, isAsc);
         case 'date':
-          return this.compare(a.date, b.date, isAsc);
+          return compare(a.date, b.date, isAsc);
         case 'isDone':
-          return this.compare(+a.isDone, +b.isDone, isAsc);
+          return compare(+a.isDone, +b.isDone, isAsc);
         default:
           return 0;
       }
@@ -74,8 +75,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   }
 
-  compare(a: number | string, b: number | string, isAsc: boolean) {  
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-  }
+
 
 }

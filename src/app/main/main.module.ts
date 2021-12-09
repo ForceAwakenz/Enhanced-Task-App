@@ -43,6 +43,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+  ],
+  exports: [
+    MainComponent,
   ]
 })
 export class MainModule { }
