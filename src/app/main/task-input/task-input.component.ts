@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormatTaskService } from 'src/app/shared/services/format-task.service';
 import { TaskDataService } from '../../shared/services/task-data.service';
 
