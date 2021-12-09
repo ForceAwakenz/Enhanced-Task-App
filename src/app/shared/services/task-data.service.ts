@@ -15,7 +15,7 @@ export class TaskDataService {
   }
 
   getTaskList(filterPhraze: string): Observable<ITask[]> {
-    return this.taskList$.asObservable().pipe(
+    return this.taskList$.pipe(
       map((taskList: ITask[]) => taskList.filter(task => task.text?.includes(filterPhraze)))
     );
   }
