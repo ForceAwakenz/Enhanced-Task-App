@@ -6,14 +6,4 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class FilterInputService {
   searchPhraze$ = new BehaviorSubject<string>('');
-  constructor() { }
-
-  // get searchPhraze$(): BehaviorSubject<string> {
-  //   return this._searchPhraze$;
-  // }
-
-  // set searchPhraze$(newSearchPhraze: BehaviorSubject<string>) {
-  //   this._searchPhraze$ = newSearchPhraze;
-  // }
-
 }
