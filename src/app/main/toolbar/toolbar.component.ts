@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, first, Observable, skip, switchMap, tap } from 'rxjs';
-import { FilterInputService } from '@app/shared/services/filter-input.service';
+import { FilterInputService } from 'src/app/shared/services/filter-input.service';
 
 @Component({
   selector: 'app-toolbar',

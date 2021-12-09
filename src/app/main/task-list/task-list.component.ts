@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { startWith, Subscription, switchMap } from 'rxjs';
-import { ITask } from '@app/shared/models/Task';
-import { FilterInputService } from '@app/shared/services/filter-input.service';
-import { TaskDataService } from '@app/shared/services/task-data.service';
+import { ITask } from 'src/app/shared/models/Task';
+import { FilterInputService } from 'src/app/shared/services/filter-input.service';
+import { TaskDataService } from 'src/app/shared/services/task-data.service';
 
 @Component({
   selector: 'app-task-list',

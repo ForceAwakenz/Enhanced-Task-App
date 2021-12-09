@@ -16,7 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TaskInputComponent } from '@app/main/task-input/task-input.component';
+import { TaskInputComponent } from './task-input/task-input.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 

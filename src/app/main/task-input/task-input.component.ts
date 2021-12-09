@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {FormControl, FormGroup } from '@angular/forms';
-import { TaskDataService } from '@app/shared/services/task-data.service';
+import { TaskDataService } from 'src/app/shared/services/task-data.service';
 
 @Component({
   selector: 'app-task-input',
