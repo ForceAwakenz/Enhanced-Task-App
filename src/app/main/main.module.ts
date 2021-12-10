@@ -18,6 +18,8 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskInputComponent } from './task-input/task-input.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { StoreModule } from '@ngrx/store';
+import * as fromMain from './reducers';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    StoreModule.forFeature(fromMain.mainFeatureKey, fromMain.reducers, { metaReducers: fromMain.metaReducers }),
   ],
   exports: [
     MainComponent,
