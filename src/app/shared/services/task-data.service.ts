@@ -13,24 +13,22 @@ export class TaskDataService {
       this.taskList$.next(this.storeService.taskListFromStorage);
   }
 
-  getTaskList(filterPhraze: string): Observable<ITask[]> {
+  getTaskList$(filterPhraze: string): Observable<ITask[]> {
     return this.taskList$.pipe(
       map((taskList: ITask[]) => taskList.filter(task => task.text?.includes(filterPhraze)))
     );
   }
 
-  deleteTask(currentTaskId: number): void {
-    this.taskList$.next(
-      [...this.taskList$.value.filter( task => task.id !== currentTaskId)]
-    );
-    this.storeService.storeTaskList(this.taskList$.value);
-  }
+  // deleteTask(currentTaskId: number): void {
+  //   this.taskList$.next(
+  //     [...this.taskList$.value.filter( task => task.id !== currentTaskId)]
+  //   );
+  //   this.storeService.storeTaskList(this.taskList$.value);
+  // }
 
-  addTask(task: ITask): void {
-    this.taskList$.next([...this.taskList$.value, task]);
-    this.storeService.storeTaskList(this.taskList$.value);
-  }
-
-
+  // addTask(task: ITask): void {
+  //   this.taskList$.next([...this.taskList$.value, task]);
+  //   this.storeService.storeTaskList(this.taskList$.value);
+  // }
 
 }

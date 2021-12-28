@@ -5,6 +5,10 @@ import { ITask } from '../../../app/shared/models/Task';
 import { FilterInputService } from '../../../app/shared/services/filter-input.service';
 import { TaskDataService } from '../../../app/shared/services/task-data.service';
 import { compare } from 'src/app/shared/utils/compare';
+import { Store } from '@ngrx/store';
+import { GlobalState } from 'src/app/redux/reducers-main';
+import { removeTask } from 'src/app/redux/actions-main';
+import { taskList } from 'src/app/redux/selectors-main';
 
 @Component({
   selector: 'app-task-list',
@@ -19,24 +23,25 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   constructor(
     private taskDataService: TaskDataService, 
-    private filterInputService: FilterInputService) {}
+    private filterInputService: FilterInputService,
+    private store: Store<GlobalState>) {}
   
   ngOnInit(): void {
-    this.searchPhrazeSubscription$ = this.filterInputService.searchPhraze$.pipe(
-      startWith(''),
-      switchMap(searchUpdate$ => this.taskDataService.getTaskList(searchUpdate$))
-    )
-    .subscribe(taskList => {
-      this.taskList = taskList;
-      this.sortedTaskList = this.taskList.slice();
-    });
+    // this.searchPhrazeSubscription$ = this.filterInputService.searchPhraze$.pipe(
+    //   startWith(''),
+    //   switchMap(searchUpdate$ => this.taskDataService.getTaskList$(searchUpdate$))
+    // )
+    // .subscribe(taskList => {
+    //   this.taskList = taskList;
+    //   this.sortedTaskList = this.taskList.slice();
+    // });
+    this.store.select(taskList).subscribe(val => this.sortedTaskList = val)
   }
 
   ngOnDestroy() {
     this.searchPhrazeSubscription$.unsubscribe();
   }
 
-  
   onTaskClick(row: ITask): void {
     row.isDone = !row.isDone;
   }
@@ -47,7 +52,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   
   onRemove(currentTask: ITask, event: Event): void {
     event.stopPropagation();
-    this.taskDataService.deleteTask(currentTask.id);    
+    this.store.dispatch(removeTask({id: currentTask.id}));
   }
 
   sortData(sort: Sort): void {
@@ -74,7 +79,5 @@ export class TaskListComponent implements OnInit, OnDestroy {
     });
 
   }
-
-
 
 }

@@ -5,5 +5,5 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class FilterInputService {
-  searchPhraze$ = new BehaviorSubject<string>('');
+  searchPhraze$ = new BehaviorSubject<string>(''); // mb useValue?
 }

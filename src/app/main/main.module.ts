@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskInputComponent } from './task-input/task-input.component';
 
 import { MatModule } from '../mat/mat.module';
+import { StoreModule } from '@ngrx/store';
+import * as fromMain from '../redux/reducers-main';
 
 
 @NgModule({
@@ -21,9 +23,10 @@ import { MatModule } from '../mat/mat.module';
     ReactiveFormsModule,
     CommonModule,
     MatModule,
+    StoreModule.forFeature(fromMain.mainFeatureKey, fromMain.mainReducer),
   ],
   exports: [
     MainComponent,
   ]
 })
-export class MainModule { }
+export class MainModule {}
