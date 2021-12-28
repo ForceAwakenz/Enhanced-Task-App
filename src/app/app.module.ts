@@ -25,7 +25,7 @@ import { LocalStorageService } from './shared/services/local-storage.service';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
   ],
-  providers: [{ provide: STORAGE_SERVICE, useClass: LocalStorageService}],
+  providers: [{ provide: STORAGE_SERVICE, useClass: LocalStorageService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
