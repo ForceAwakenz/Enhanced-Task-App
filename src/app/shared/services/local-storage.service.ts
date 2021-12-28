@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StorageKeeper } from '../models/StorageAccessor';
+import { StorageKeeper } from '../models/StorageKeeper';
 import { ITask } from '../models/Task';
 
 const TASK_LIST_IN_LOCAL_STORAGE = 'taskList';

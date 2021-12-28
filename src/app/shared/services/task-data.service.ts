@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { StorageKeeper, STORAGE_SERVICE } from '../models/StorageAccessor';
+import { StorageKeeper, STORAGE_SERVICE } from '../models/StorageKeeper';
 import { ITask } from '../models/Task';
 
 @Injectable({
