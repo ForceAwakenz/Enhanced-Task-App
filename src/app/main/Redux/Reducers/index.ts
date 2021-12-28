@@ -3,7 +3,6 @@ import {
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
-  MetaReducer
 } from '@ngrx/store';
 
 export const mainFeatureKey = 'main';
@@ -16,5 +15,3 @@ export const reducers: ActionReducerMap<State> = {
 
 };
 
-
-export const metaReducers: MetaReducer<State>[] = [];

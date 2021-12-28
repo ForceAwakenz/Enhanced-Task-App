@@ -19,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskInputComponent } from './task-input/task-input.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { StoreModule } from '@ngrx/store';
-import * as fromMain from './reducers';
+import * as fromMain from './Redux/Reducers';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import * as fromMain from './reducers';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    StoreModule.forFeature(fromMain.mainFeatureKey, fromMain.reducers, { metaReducers: fromMain.metaReducers }),
+    StoreModule.forFeature(fromMain.mainFeatureKey, fromMain.reducers),
   ],
   exports: [
     MainComponent,
