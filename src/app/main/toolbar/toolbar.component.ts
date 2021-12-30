@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
-import { FilterInputService } from '../../../app/shared/services/filter-input.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,11 +10,11 @@ import { FilterInputService } from '../../../app/shared/services/filter-input.se
 export class ToolbarComponent implements OnInit {
   filterInput = new FormControl;
 
-  constructor(private filterInputService: FilterInputService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.filterInputChange$().subscribe(searchUpdate => {
-      this.filterInputService.searchPhraze$.next(searchUpdate);
+
     });
   }
 

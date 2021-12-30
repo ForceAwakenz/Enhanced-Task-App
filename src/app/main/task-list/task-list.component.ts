@@ -1,13 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { startWith, Subscription, switchMap } from 'rxjs';
+import { distinctUntilChanged, Observable, of, skip, startWith, Subscription, switchMap } from 'rxjs';
 import { ITask } from '../../../app/shared/models/Task';
-import { FilterInputService } from '../../../app/shared/services/filter-input.service';
-import { TaskDataService } from '../../../app/shared/services/task-data.service';
 import { compare } from 'src/app/shared/utils/compare';
 import { Store } from '@ngrx/store';
 import { GlobalState } from 'src/app/redux/reducers-main';
-import { removeTask } from 'src/app/redux/actions-main';
+import { removeTask, saveToStorage } from 'src/app/redux/actions-main';
 import { taskList } from 'src/app/redux/selectors-main';
 
 @Component({
@@ -17,29 +15,18 @@ import { taskList } from 'src/app/redux/selectors-main';
 })
 export class TaskListComponent implements OnInit, OnDestroy {
   displayedColumns = ['text', 'date', 'isDone', 'id'];
-  taskList!: ITask[];
   sortedTaskList!: ITask[];
-  searchPhrazeSubscription$!: Subscription;
+  taskListSubscription$ = new Subscription();
 
   constructor(
-    private taskDataService: TaskDataService, 
-    private filterInputService: FilterInputService,
     private store: Store<GlobalState>) {}
   
   ngOnInit(): void {
-    // this.searchPhrazeSubscription$ = this.filterInputService.searchPhraze$.pipe(
-    //   startWith(''),
-    //   switchMap(searchUpdate$ => this.taskDataService.getTaskList$(searchUpdate$))
-    // )
-    // .subscribe(taskList => {
-    //   this.taskList = taskList;
-    //   this.sortedTaskList = this.taskList.slice();
-    // });
-    this.store.select(taskList).subscribe(val => this.sortedTaskList = val)
+    this.taskListSubscription$ = this.store.select(taskList).subscribe(taskList => this.sortedTaskList = taskList);
   }
 
   ngOnDestroy() {
-    this.searchPhrazeSubscription$.unsubscribe();
+    this.taskListSubscription$.unsubscribe();
   }
 
   onTaskClick(row: ITask): void {
@@ -57,7 +44,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   sortData(sort: Sort): void {
 
-    const data = this.taskList.slice();
+    const data = this.sortedTaskList.slice();
     
     if (!sort.active || sort.direction === '') {
       this.sortedTaskList = data;

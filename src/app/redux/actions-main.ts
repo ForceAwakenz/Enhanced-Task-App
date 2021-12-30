@@ -8,7 +8,7 @@ export enum StorageActions {
   REMOVE_TASK = '[Main] Remove Task',
 };
 
-export const loadFromStorage = createAction(
+export const loadFromStorageService = createAction(
   StorageActions.LOAD_FROM_STORAGE,
    props<{ taskList: ITask[] }>()
 );

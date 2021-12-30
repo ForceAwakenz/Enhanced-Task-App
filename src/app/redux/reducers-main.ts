@@ -2,7 +2,7 @@ import {
   ActionReducerMap, createReducer, on, State,
 } from '@ngrx/store';
 import { ITask } from 'src/app/shared/models/Task';
-import { addTaskToState, loadFromStorage, removeTask, saveToStorage } from './actions-main';
+import { addTaskToState, loadFromStorageService, removeTask, saveToStorage } from './actions-main';
 
 export const mainFeatureKey = 'main';
 
@@ -25,7 +25,7 @@ export const  initialMainState: MainState = {
 export const mainReducer = createReducer(
   initialMainState,
   on(
-    loadFromStorage,
+    loadFromStorageService,
     (state, action) => ({...state, taskList: action.taskList})) ,
   on(
     addTaskToState,
@@ -35,8 +35,4 @@ export const mainReducer = createReducer(
     removeTask,
     (state, action) => ({...state, taskList: state.taskList.filter(task => task.id !== action.id)})
   ),
-  // on(
-  //   saveToStorage,
-  //   (state, action) => ({})
-  // )
 );

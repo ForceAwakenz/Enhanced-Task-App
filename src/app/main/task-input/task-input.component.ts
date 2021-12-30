@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { addTaskToState } from 'src/app/redux/actions-main';
+import { addTaskToState, saveToStorage } from 'src/app/redux/actions-main';
 import { GlobalState } from 'src/app/redux/reducers-main';
+import { taskList } from 'src/app/redux/selectors-main';
 import { ITask } from 'src/app/shared/models/Task';
 import { FormatTaskService } from 'src/app/shared/services/format-task.service';
-import { TaskDataService } from '../../shared/services/task-data.service';
 
 @Component({
   selector: 'app-task-input',
@@ -20,7 +20,6 @@ export class TaskInputComponent implements OnInit {
 
 
   constructor(
-    private taskDataService: TaskDataService,
     private formatTaskService: FormatTaskService,
     private store: Store<GlobalState>) {}
 

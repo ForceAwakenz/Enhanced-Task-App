@@ -1,26 +1,36 @@
-import { Component, Inject, OnInit } from '@angular/core'
-import { State, Store } from '@ngrx/store';
-import { take } from 'rxjs';
-import { loadFromStorage } from 'src/app/redux/actions-main';
-import { StorageKeeper, STORAGE_SERVICE } from 'src/app/shared/models/StorageKeeper';
-import { ITask } from 'src/app/shared/models/Task';
-import { TaskDataService } from 'src/app/shared/services/task-data.service';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core'
+import { select, Store } from '@ngrx/store';
+import { skip, Subscription } from 'rxjs';
+import { loadFromStorageService, saveToStorage } from 'src/app/redux/actions-main';
+import { GlobalState } from 'src/app/redux/reducers-main';
+import { taskList } from 'src/app/redux/selectors-main';
+import { StorageService, STORAGE_SERVICE } from 'src/app/shared/models/StorageService';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
-  constructor(private store: Store, 
-    private taskDataService: TaskDataService) {}
+  taskListSubscription$ = new Subscription();
+
+  constructor(
+    private store: Store<GlobalState>, 
+    @Inject(STORAGE_SERVICE) private storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.taskDataService.getTaskList$('').pipe(take(1)).subscribe(
-      (taskList: ITask[]) => {
-        this.store.dispatch(loadFromStorage({ taskList: taskList }));
-      }
-    )
+    this.store.dispatch(loadFromStorageService({taskList: this.storageService.taskListFromStorage}));
+    this.taskListSubscription$ = this.store.pipe(
+        skip(2),
+        select(taskList)
+    ).subscribe( 
+      taskList => this.store.dispatch(saveToStorage({taskList}))
+    );
   }
+
+  ngOnDestroy(): void {
+    this.taskListSubscription$.unsubscribe();
+  }
+
 }

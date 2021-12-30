@@ -9,6 +9,8 @@ import { TaskInputComponent } from './task-input/task-input.component';
 import { MatModule } from '../mat/mat.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromMain from '../redux/reducers-main';
+import { EffectsModule } from '@ngrx/effects';
+import { MainEffects } from '../redux/effects-main';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import * as fromMain from '../redux/reducers-main';
     CommonModule,
     MatModule,
     StoreModule.forFeature(fromMain.mainFeatureKey, fromMain.mainReducer),
+    EffectsModule.forFeature([MainEffects]),
   ],
   exports: [
     MainComponent,
