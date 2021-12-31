@@ -16,13 +16,17 @@ import { taskList } from 'src/app/redux/selectors-main';
 export class TaskListComponent implements OnInit, OnDestroy {
   displayedColumns = ['text', 'date', 'isDone', 'id'];
   sortedTaskList!: ITask[];
+  taskList!: ITask[];
   taskListSubscription$ = new Subscription();
 
   constructor(
     private store: Store<GlobalState>) {}
   
   ngOnInit(): void {
-    this.taskListSubscription$ = this.store.select(taskList).subscribe(taskList => this.sortedTaskList = taskList);
+    this.taskListSubscription$ = this.store.select(taskList).subscribe(taskList => {
+      this.taskList = taskList;
+      this.sortedTaskList = taskList.slice();
+    });
   }
 
   ngOnDestroy() {
@@ -44,7 +48,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   sortData(sort: Sort): void {
 
-    const data = this.sortedTaskList.slice();
+    const data = this.taskList.slice();
     
     if (!sort.active || sort.direction === '') {
       this.sortedTaskList = data;
