@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { distinctUntilChanged, Observable, of, skip, startWith, Subscription, switchMap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ITask } from '../../../app/shared/models/Task';
 import { compare } from 'src/app/shared/utils/compare';
 import { Store } from '@ngrx/store';
 import { GlobalState } from 'src/app/redux/reducers-main';
-import { removeTask, saveToStorage } from 'src/app/redux/actions-main';
+import { removeTask, updateTask } from 'src/app/redux/actions-main';
 import { taskList } from 'src/app/redux/selectors-main';
 
 @Component({
@@ -24,7 +24,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
     this.taskListSubscription$ = this.store.select(taskList).subscribe(taskList => {
-      this.taskList = taskList;
+      this.taskList = taskList.slice();
       this.sortedTaskList = taskList.slice();
     });
   }
@@ -33,12 +33,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskListSubscription$.unsubscribe();
   }
 
-  onTaskClick(row: ITask): void {
-    row.isDone = !row.isDone;
-  }
-
-  onIsDoneChanged(event: Event): void {
-    event.stopPropagation();
+  onTaskClick(task: ITask): void {
+    const updatedTask: ITask = {...task};
+    updatedTask.isDone = !updatedTask.isDone;
+    this.store.dispatch(updateTask({ updatedTask }));
   }
   
   onRemove(currentTask: ITask, event: Event): void {

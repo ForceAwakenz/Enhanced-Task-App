@@ -6,6 +6,7 @@ export enum StorageActions {
   SAVE_TO_STORAGE = '[Main] Save to Storage',
   ADD_TASK = '[Main] Add Task',
   REMOVE_TASK = '[Main] Remove Task',
+  UPDATE_TASK = '[Main] Update Task',
 };
 
 export const loadFromStorageService = createAction(
@@ -26,4 +27,9 @@ export const removeTask = createAction(
 export const saveToStorage = createAction(
   StorageActions.SAVE_TO_STORAGE,
   props<{ taskList: ITask[] }>()
+)
+
+export const updateTask = createAction(
+  StorageActions.UPDATE_TASK,
+  props<{ updatedTask: ITask }>()
 )

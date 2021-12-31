@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
+import { GlobalState } from 'src/app/redux/reducers-main';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,12 +12,9 @@ import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 export class ToolbarComponent implements OnInit {
   filterInput = new FormControl;
 
-  constructor() { }
+  constructor(private store: Store<GlobalState>) { }
 
   ngOnInit(): void {
-    this.filterInputChange$().subscribe(searchUpdate => {
-
-    });
   }
 
   private filterInputChange$(): Observable<string> {
