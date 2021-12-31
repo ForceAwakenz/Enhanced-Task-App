@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { ITask } from '../../../app/shared/models/Task';
 import { compare } from 'src/app/shared/utils/compare';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { GlobalState } from 'src/app/redux/reducers-main';
 import { removeTask, updateTask } from 'src/app/redux/actions-main';
 import { taskList } from 'src/app/redux/selectors-main';
@@ -23,7 +23,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
     private store: Store<GlobalState>) {}
   
   ngOnInit(): void {
-    this.taskListSubscription$ = this.store.select(taskList).subscribe(taskList => {
+    this.taskListSubscription$ = this.store.pipe(
+        select(taskList)
+        ).subscribe(taskList => {
       this.taskList = taskList.slice();
       this.sortedTaskList = taskList.slice();
     });

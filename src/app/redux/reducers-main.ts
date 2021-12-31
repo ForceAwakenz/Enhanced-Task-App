@@ -2,7 +2,7 @@ import {
   createReducer, on,
 } from '@ngrx/store';
 import { ITask } from 'src/app/shared/models/Task';
-import { addTaskToState, loadFromStorageService, removeTask, updateTask } from './actions-main';
+import { addTaskToState, loadFromStorageService, removeTask, updateFilter, updateTask } from './actions-main';
 
 export const mainFeatureKey = 'main';
 
@@ -12,10 +12,12 @@ export interface GlobalState {
 
 export interface MainState {
   taskList: ITask[];
+  filterInput: string;
 }
 
 export const  initialMainState: MainState = {
   taskList: [],
+  filterInput: '',
 }
 
 export const mainReducer = createReducer(
@@ -40,5 +42,9 @@ export const mainReducer = createReducer(
         task => task.id == action.updatedTask.id ? action.updatedTask : task
       )
     })
+  ),
+  on(
+    updateFilter,
+    (state, action) => ({...state, filterInput: action.filterInput })
   )
 );
