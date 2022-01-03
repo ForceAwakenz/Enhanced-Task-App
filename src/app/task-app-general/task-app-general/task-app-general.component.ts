@@ -1,10 +1,9 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store';
 import { skip, Subscription } from 'rxjs';
-import { loadFromStorageService, saveToStorage } from 'src/app/redux/task-app-general.actions';
+import { getFromStorage, saveToStorage } from 'src/app/redux/task-app-general.actions';
 import { taskList } from 'src/app/redux/task-app-general.selectors';
 import { GlobalState } from 'src/app/shared/models/GlobalState';
-import { StorageService, STORAGE_SERVICE } from 'src/app/shared/models/StorageService';
 
 @Component({
   selector: 'app-task-app-general',
@@ -15,15 +14,14 @@ export class TaskAppGeneralComponent implements OnInit, OnDestroy {
 
   taskListSubscription$ = new Subscription();
 
-  constructor(
-    private store: Store<GlobalState>, 
-    @Inject(STORAGE_SERVICE) private storageService: StorageService) {}
+  constructor(private store: Store<GlobalState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadFromStorageService({taskList: this.storageService.getTaskListFromStorage()}));
+    this.store.dispatch(getFromStorage());
+    this.store.dispatch(updateStorage());
     this.taskListSubscription$ = this.store.pipe(
-        skip(2),
-        select(taskList)
+      select(taskList),
+      skip(1),
     ).subscribe( 
       taskList => this.store.dispatch(saveToStorage({taskList}))
     );
@@ -34,3 +32,7 @@ export class TaskAppGeneralComponent implements OnInit, OnDestroy {
   }
 
 }
+function updateStorage(): any {
+  throw new Error('Function not implemented.');
+}
+
