@@ -11,7 +11,7 @@ export class LocalStorageService extends StorageService {
     localStorage.setItem(TASK_LIST_IN_LOCAL_STORAGE, JSON.stringify(taskList))
   }
 
-  get taskListFromStorage(): ITask[] {
+  getTaskListFromStorage(): ITask[] {
     return JSON.parse(localStorage.getItem(TASK_LIST_IN_LOCAL_STORAGE) || '[]');
   }
 

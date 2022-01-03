@@ -20,7 +20,7 @@ export class MainComponent implements OnInit, OnDestroy {
     @Inject(STORAGE_SERVICE) private storageService: StorageService) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadFromStorageService({taskList: this.storageService.taskListFromStorage}));
+    this.store.dispatch(loadFromStorageService({taskList: this.storageService.getTaskListFromStorage()}));
     this.taskListSubscription$ = this.store.pipe(
         skip(2),
         select(taskList)

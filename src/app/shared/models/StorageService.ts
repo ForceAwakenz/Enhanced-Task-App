@@ -5,5 +5,5 @@ export const STORAGE_SERVICE = new InjectionToken<StorageService>('storageServic
 
 export abstract class StorageService {
   abstract storeTaskList(taskList: ITask[]): void;
-  abstract get taskListFromStorage(): ITask[];
+  abstract getTaskListFromStorage(): ITask[];
 }
