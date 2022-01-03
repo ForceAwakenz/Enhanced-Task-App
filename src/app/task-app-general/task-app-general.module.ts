@@ -10,7 +10,7 @@ import { MatModule } from '../mat/mat.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromMain from '../redux/task-app-general.reducers';
 import { EffectsModule } from '@ngrx/effects';
-import { MainEffects } from '../redux/task-app-general.effects';
+import { TaskAppGeneralEffects } from '../redux/task-app-general.effects';
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import { MainEffects } from '../redux/task-app-general.effects';
     CommonModule,
     MatModule,
     StoreModule.forFeature(fromMain.mainFeatureKey, fromMain.mainReducer),
-    EffectsModule.forFeature([MainEffects]),
+    EffectsModule.forFeature([TaskAppGeneralEffects]),
   ],
   exports: [
     TaskAppGeneralComponent,
