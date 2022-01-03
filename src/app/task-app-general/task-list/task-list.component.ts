@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { combineLatest, Observable, Subscription} from 'rxjs';
-import { ITask } from '../../../app/shared/models/Task';
+import { ITask } from '../../shared/models/Task';
 import { compare } from 'src/app/shared/utils/compare';
 import { select, Store } from '@ngrx/store';
-import { removeTask, updateTask } from 'src/app/redux/actions-main';
-import { filterInput, taskList } from 'src/app/redux/selectors-main';
+import { removeTask, updateTask } from 'src/app/redux/task-app-general.actions';
+import { filterInput, taskList } from 'src/app/redux/task-app-general.selectors';
 import { GlobalState } from 'src/app/shared/models/GlobalState';
 
 @Component({

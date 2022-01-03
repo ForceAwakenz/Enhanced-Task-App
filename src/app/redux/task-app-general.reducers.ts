@@ -1,12 +1,12 @@
 import {
   createReducer, on,
 } from '@ngrx/store';
-import { MainState } from '../shared/models/MainState';
-import { addTaskToState, loadFromStorageService, removeTask, updateFilter, updateTask } from './actions-main';
+import { MainState as TaskAppGeneralState } from '../shared/models/MainState';
+import { addTaskToState, loadFromStorageService, removeTask, updateFilter, updateTask } from './task-app-general.actions';
 
 export const mainFeatureKey = 'main';
 
-export const  initialMainState: MainState = {
+export const  initialMainState: TaskAppGeneralState = {
   taskList: [],
   filterInput: '',
 }

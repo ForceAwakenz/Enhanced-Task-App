@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MainModule } from './main/main.module';
+import { TaskAppGeneralModule } from './task-app-general/task-app-general.module';
 import { StoreModule } from '@ngrx/store';
 import { STORAGE_SERVICE } from './shared/models/StorageService';
 import { LocalStorageService } from './shared/services/local-storage.service';
@@ -18,7 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    MainModule,
+    TaskAppGeneralModule,
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),

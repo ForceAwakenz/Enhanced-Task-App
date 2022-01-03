@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
-import { updateFilter } from 'src/app/redux/actions-main';
+import { updateFilter } from 'src/app/redux/task-app-general.actions';
 import { GlobalState } from 'src/app/shared/models/GlobalState';
 
 @Component({

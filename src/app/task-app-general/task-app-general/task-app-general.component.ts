@@ -1,17 +1,17 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store';
 import { skip, Subscription } from 'rxjs';
-import { loadFromStorageService, saveToStorage } from 'src/app/redux/actions-main';
-import { taskList } from 'src/app/redux/selectors-main';
+import { loadFromStorageService, saveToStorage } from 'src/app/redux/task-app-general.actions';
+import { taskList } from 'src/app/redux/task-app-general.selectors';
 import { GlobalState } from 'src/app/shared/models/GlobalState';
 import { StorageService, STORAGE_SERVICE } from 'src/app/shared/models/StorageService';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  selector: 'app-task-app-general',
+  templateUrl: './task-app-general.component.html',
+  styleUrls: ['./task-app-general.component.scss']
 })
-export class MainComponent implements OnInit, OnDestroy {
+export class TaskAppGeneralComponent implements OnInit, OnDestroy {
 
   taskListSubscription$ = new Subscription();
 

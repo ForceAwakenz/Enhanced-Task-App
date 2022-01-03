@@ -1,7 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { ITask } from "../shared/models/Task";
 
-export enum MainActions {
+export enum TaskAppGeneralActions {
   LOAD_FROM_STORAGE = '[Main] Load from Storage',
   SAVE_TO_STORAGE = '[Main] Save to Storage',
   ADD_TASK = '[Main] Add Task',
@@ -11,31 +11,31 @@ export enum MainActions {
 };
 
 export const loadFromStorageService = createAction(
-  MainActions.LOAD_FROM_STORAGE,
+  TaskAppGeneralActions.LOAD_FROM_STORAGE,
    props<{ taskList: ITask[] }>()
 );
 
 export const addTaskToState = createAction(
-  MainActions.ADD_TASK,
+  TaskAppGeneralActions.ADD_TASK,
   props<{ task: ITask }>()
 );
 
 export const removeTask = createAction(
-  MainActions.REMOVE_TASK,
+  TaskAppGeneralActions.REMOVE_TASK,
   props<{ id: number }>()
 );
 
 export const saveToStorage = createAction(
-  MainActions.SAVE_TO_STORAGE,
+  TaskAppGeneralActions.SAVE_TO_STORAGE,
   props<{ taskList: ITask[] }>()
 );
 
 export const updateTask = createAction(
-  MainActions.UPDATE_TASK,
+  TaskAppGeneralActions.UPDATE_TASK,
   props<{ updatedTask: ITask }>()
 );
 
 export const updateFilter = createAction(
-  MainActions.UPDATE_FILTER,
+  TaskAppGeneralActions.UPDATE_FILTER,
   props<{ filterInput: string }>()
 );

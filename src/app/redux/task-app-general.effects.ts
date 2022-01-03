@@ -2,10 +2,10 @@ import { Inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { tap } from "rxjs";
 import { StorageService, STORAGE_SERVICE } from "../shared/models/StorageService";
-import { saveToStorage } from "./actions-main";
+import { saveToStorage } from "./task-app-general.actions";
 
 @Injectable()
-export class MainEffects {
+export class TaskAppGeneralEffects {
 
   storeTaskList$ = createEffect(() => 
     this.actions$.pipe(
