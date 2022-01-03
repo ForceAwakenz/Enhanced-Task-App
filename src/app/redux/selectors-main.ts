@@ -1,5 +1,5 @@
 import { createSelector } from "@ngrx/store";
-import { GlobalState } from "./reducers-main";
+import { GlobalState } from "../shared/models/GlobalState";
 
 
 export const taskList = createSelector(

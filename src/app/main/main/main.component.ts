@@ -2,8 +2,8 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core'
 import { select, Store } from '@ngrx/store';
 import { skip, Subscription } from 'rxjs';
 import { loadFromStorageService, saveToStorage } from 'src/app/redux/actions-main';
-import { GlobalState } from 'src/app/redux/reducers-main';
 import { taskList } from 'src/app/redux/selectors-main';
+import { GlobalState } from 'src/app/shared/models/GlobalState';
 import { StorageService, STORAGE_SERVICE } from 'src/app/shared/models/StorageService';
 
 @Component({

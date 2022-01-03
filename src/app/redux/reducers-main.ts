@@ -1,19 +1,10 @@
 import {
   createReducer, on,
 } from '@ngrx/store';
-import { ITask } from 'src/app/shared/models/Task';
+import { MainState } from '../shared/models/MainState';
 import { addTaskToState, loadFromStorageService, removeTask, updateFilter, updateTask } from './actions-main';
 
 export const mainFeatureKey = 'main';
-
-export interface GlobalState {
-  main: MainState
-}
-
-export interface MainState {
-  taskList: ITask[];
-  filterInput: string;
-}
 
 export const  initialMainState: MainState = {
   taskList: [],

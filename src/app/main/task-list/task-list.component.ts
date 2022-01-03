@@ -4,9 +4,9 @@ import { combineLatest, Observable, Subscription} from 'rxjs';
 import { ITask } from '../../../app/shared/models/Task';
 import { compare } from 'src/app/shared/utils/compare';
 import { select, Store } from '@ngrx/store';
-import { GlobalState } from 'src/app/redux/reducers-main';
 import { removeTask, updateTask } from 'src/app/redux/actions-main';
 import { filterInput, taskList } from 'src/app/redux/selectors-main';
+import { GlobalState } from 'src/app/shared/models/GlobalState';
 
 @Component({
   selector: 'app-task-list',

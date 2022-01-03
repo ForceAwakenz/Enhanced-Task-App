@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { updateFilter } from 'src/app/redux/actions-main';
-import { GlobalState } from 'src/app/redux/reducers-main';
+import { GlobalState } from 'src/app/shared/models/GlobalState';
 
 @Component({
   selector: 'app-toolbar',
