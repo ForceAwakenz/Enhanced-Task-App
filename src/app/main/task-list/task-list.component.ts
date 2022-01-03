@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { Subscription, switchMap } from 'rxjs';
+import { combineLatest, Observable, Subscription} from 'rxjs';
 import { ITask } from '../../../app/shared/models/Task';
 import { compare } from 'src/app/shared/utils/compare';
 import { select, Store } from '@ngrx/store';
 import { GlobalState } from 'src/app/redux/reducers-main';
 import { removeTask, updateTask } from 'src/app/redux/actions-main';
-import { taskList } from 'src/app/redux/selectors-main';
+import { filterInput, taskList } from 'src/app/redux/selectors-main';
 
 @Component({
   selector: 'app-task-list',
@@ -17,22 +17,25 @@ export class TaskListComponent implements OnInit, OnDestroy {
   displayedColumns = ['text', 'date', 'isDone', 'id'];
   sortedTaskList!: ITask[];
   taskList!: ITask[];
-  taskListSubscription$ = new Subscription();
+  taskList$ = new Observable<ITask[]>();
+  filterInput$ = new Observable<string>();
+  filteringListSubscription$ = new Subscription();
 
   constructor(
     private store: Store<GlobalState>) {}
   
   ngOnInit(): void {
-    this.taskListSubscription$ = this.store.pipe(
-        select(taskList)
-        ).subscribe(taskList => {
+    this.taskList$ = this.store.pipe(select(taskList));
+    this.filterInput$ = this.store.pipe(select(filterInput));
+    this.filteringListSubscription$ = combineLatest([this.taskList$, this.filterInput$])  
+        .subscribe(([taskList, filterInput ])=> {
       this.taskList = taskList.slice();
-      this.sortedTaskList = taskList.slice();
+      this.sortedTaskList = taskList.slice().filter( task => task.text.includes(filterInput));
     });
   }
 
   ngOnDestroy() {
-    this.taskListSubscription$.unsubscribe();
+    this.filteringListSubscription$.unsubscribe();
   }
 
   onTaskClick(task: ITask): void {
