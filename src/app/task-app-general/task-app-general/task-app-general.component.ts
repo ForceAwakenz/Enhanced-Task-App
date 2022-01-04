@@ -19,12 +19,12 @@ export class TaskAppGeneralComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(getFromStorage());
     this.store.dispatch(updateStorage());
-    this.taskListSubscription$ = this.store.pipe(
-      select(taskList),
-      skip(1),
-    ).subscribe( 
-      taskList => this.store.dispatch(saveToStorage({taskList}))
-    );
+    // this.taskListSubscription$ = this.store.pipe(
+    //   select(taskList),
+    //   skip(1),
+    // ).subscribe( 
+    //   taskList => this.store.dispatch(saveToStorage({taskList}))
+    // );
   }
 
   ngOnDestroy(): void {
