@@ -28,7 +28,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.taskList$ = this.store.pipe(select(taskList));
     this.filterInput$ = this.store.pipe(select(filterInput));
     this.filteringListSubscription$ = combineLatest([this.taskList$, this.filterInput$])  
-        .subscribe(([taskList, filterInput ])=> {
+        .subscribe(([taskList, filterInput ]) => {
       this.taskList = taskList.slice();
       this.sortedTaskList = taskList.slice().filter( task => task.text.includes(filterInput));
     });
