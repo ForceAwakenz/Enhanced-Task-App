@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ToolbarComponent } from './toolbar.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { AppInitState } from 'src/app/redux/task-app-general.reducers';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -8,9 +9,11 @@ describe('ToolbarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToolbarComponent ]
+      declarations: [ ToolbarComponent ],
+      providers: [ provideMockStore({initialState: AppInitState}) ]
     })
     .compileComponents();
+
   });
 
   beforeEach(() => {

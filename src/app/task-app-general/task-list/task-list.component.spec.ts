@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { AppInitState } from 'src/app/redux/task-app-general.reducers';
 
 import { TaskListComponent } from './task-list.component';
 
@@ -8,7 +10,8 @@ describe('TaskListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskListComponent ]
+      declarations: [ TaskListComponent ],
+      providers: [ provideMockStore({initialState: AppInitState})]
     })
     .compileComponents();
   });
