@@ -25,4 +25,9 @@ describe('TaskListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should execute sortData function', () => {
+    // component.sortData()
+  });
+
 });

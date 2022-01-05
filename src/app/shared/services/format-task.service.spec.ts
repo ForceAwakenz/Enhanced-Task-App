@@ -14,6 +14,6 @@ describe('FormatTaskService', () => {
   });
 
   it('should return ITask with property isDone === false', () => {
-    expect(service.formatTask({text: ''}).isDone).toBe(false);
+    expect(service.formatTask({text: ''}).isDone).toBeFalse();
   });
 });
