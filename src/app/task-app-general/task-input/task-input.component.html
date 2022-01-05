@@ -13,7 +13,7 @@
         
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Task</mat-label>
-            <input matInput placeholder="Enter the task here" formControlName="taskTextInput">
+            <input #nameInput matInput placeholder="Enter the task here" formControlName="taskTextInput">
         </mat-form-field>
 
         &nbsp;
@@ -27,7 +27,7 @@
         
         &nbsp;
         
-        <button mat-raised-button color="accent" type="submit">
+        <button mat-raised-button color="accent" type="submit" [disabled]="addTaskForm.invalid">
             <mat-icon >
                 add
             </mat-icon>

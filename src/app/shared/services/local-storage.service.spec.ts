@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TaskDataService } from './task-data.service';
+import { LocalStorageService } from './local-storage.service';
 
-describe('TaskDataService', () => {
-  let service: TaskDataService;
+describe('StoreService', () => {
+  let service: LocalStorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TaskDataService);
+    service = TestBed.inject(LocalStorageService);
   });
 
   it('should be created', () => {

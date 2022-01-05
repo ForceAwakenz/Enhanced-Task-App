@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainComponent } from './main.component';
+import { TaskAppGeneralComponent } from './task-app-general.component';
 
 describe('MainComponent', () => {
-  let component: MainComponent;
-  let fixture: ComponentFixture<MainComponent>;
+  let component: TaskAppGeneralComponent;
+  let fixture: ComponentFixture<TaskAppGeneralComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainComponent ]
+      declarations: [ TaskAppGeneralComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainComponent);
+    fixture = TestBed.createComponent(TaskAppGeneralComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
