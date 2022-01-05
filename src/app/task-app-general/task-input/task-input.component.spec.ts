@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Store } from '@ngrx/store';
+import { MatModule } from 'src/app/mat/mat.module';
+import { FormatTaskService } from 'src/app/shared/services/format-task.service';
 
 import { TaskInputComponent } from './task-input.component';
 
@@ -8,7 +11,9 @@ describe('TaskInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskInputComponent ]
+      declarations: [ TaskInputComponent ],
+      imports: [MatModule],
+      providers: [ Store, FormatTaskService ]
     })
     .compileComponents();
   });
