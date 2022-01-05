@@ -20,9 +20,9 @@ export class TaskAppGeneralEffects {
       ofType(addTaskToState, removeTask, updateTask),
       withLatestFrom(this.store.select(taskList)),
       map(
-        ([action, taskList]) => this.store.dispatch(saveToStorage({taskList}))
+        ([action, taskList]) => saveToStorage({taskList})
       )
-    ), { dispatch: false }
+    ), { dispatch: true }
   );
 
   storeTaskList$ = createEffect(() => 
