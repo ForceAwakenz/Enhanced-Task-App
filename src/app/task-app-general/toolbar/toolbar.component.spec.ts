@@ -3,7 +3,6 @@ import { ToolbarComponent } from './toolbar.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { AppInitState } from 'src/app/redux/task-app-general.reducers';
 import { MatModule } from 'src/app/mat/mat.module';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('ToolbarComponent', () => {
