@@ -1,4 +1,3 @@
-import { DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { MatModule } from 'src/app/mat/mat.module';
@@ -9,7 +8,6 @@ import { TaskInputComponent } from './task-input.component';
 describe('TaskInputComponent', () => {
   let component: TaskInputComponent;
   let fixture: ComponentFixture<TaskInputComponent>;
-  let debugElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -23,7 +21,6 @@ describe('TaskInputComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TaskInputComponent);
     component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
     fixture.detectChanges();
   });
 
