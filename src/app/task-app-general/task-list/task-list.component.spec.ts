@@ -19,8 +19,8 @@ describe('TaskListComponent', () => {
           selectors: [
             { selector: taskList, 
               value: [
-              {text: '2', date: '12/17/1995', isDone: false, id: 55},
-              {text: '1', date: '12/18/1995', isDone: false, id: 44},
+              {text: '2', date: '12/18/1995', isDone: false, id: 44},
+              {text: '1', date: '12/17/1995', isDone: false, id: 55},
               ]
             },
             { selector: filterInput, value: '1' },
