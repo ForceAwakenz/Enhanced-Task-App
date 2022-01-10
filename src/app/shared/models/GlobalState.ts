@@ -1,5 +1,5 @@
-import { MainState } from "./MainState";
+import { TaskAppGeneralState } from "./TaskAppGeneralState";
 
 export interface GlobalState {
-    main: MainState
-  }
+    generalState: TaskAppGeneralState
+}
