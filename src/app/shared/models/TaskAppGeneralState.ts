@@ -1,6 +1,6 @@
 import { ITask } from "./Task";
 
-export interface MainState {
+export interface TaskAppGeneralState {
     taskList: ITask[];
     filterInput: string;
   }

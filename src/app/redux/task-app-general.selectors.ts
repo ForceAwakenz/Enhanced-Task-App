@@ -3,11 +3,11 @@ import { GlobalState } from "../shared/models/GlobalState";
 
 
 export const taskList = createSelector(
-  (state: GlobalState) => state.main,
-  main => main.taskList
+  (state: GlobalState) => state.generalState,
+  generalState => generalState.taskList
 );
 
 export const filterInput = createSelector(
-  (state: GlobalState) => state.main,
-  main => main.filterInput
+  (state: GlobalState) => state.generalState,
+  generalState => generalState.filterInput
 )

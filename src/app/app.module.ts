@@ -10,6 +10,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { parseFromStorage } from './shared/utils/parse-from-storage';
+import * as fromMain from './redux/task-app-general.reducers';
+import { TaskAppGeneralEffects } from './redux/task-app-general.effects';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,9 @@ import { parseFromStorage } from './shared/utils/parse-from-storage';
     ReactiveFormsModule,
     FormsModule,
     TaskAppGeneralModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({[fromMain.mainFeatureKey]: fromMain.mainReducer}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([TaskAppGeneralEffects]),
   ],
   providers: [
     { provide: STORAGE_SERVICE, useClass: LocalStorageService },
